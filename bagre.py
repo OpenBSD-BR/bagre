@@ -42,6 +42,8 @@ class Bagre(ib3.auth.SASL, ib3.nick.Regain, ib3.connection.SSL, ib3.Bot):
         if 'windows' in args[0] or 'Windows' in args[0]:
             conn.privmsg(toNick, 'mesmo pagando é uma bosta')
         
+        if '!help' in args[0]:
+            conn.privmsg(toNick, 'Ainda não tenho um help ou ajuda para mostrar, mas tente usar {}: !fortune'.format(nick))        
 
     def do_command(self, conn, event, cmd):
         to = event.target
@@ -53,7 +55,8 @@ class Bagre(ib3.auth.SASL, ib3.nick.Regain, ib3.connection.SSL, ib3.Bot):
         elif cmd == 'die':
             self.die()
         elif cmd == '!help':
-            conn.privmsg(to, 'Ainda não tenho um help ou ajuda para mostrar')
+            conn.privmsg(to, 'Ainda não tenho um help ou ajuda para mostrar, mas tente usar {}: !fortune'.format(nick))
+            conn.privmsg(to, 'Ajuda ae com novas funções: https://github.com/OpenBSD-BR/bagre')
         elif cmd == '!fortune':
             txt = os.popen('fortune fortune-br').read()
             for txt in txt.split('\n'):
