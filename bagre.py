@@ -54,7 +54,10 @@ class Bagre(ib3.auth.SASL, ib3.nick.Regain, ib3.connection.SSL, ib3.Bot):
         if cmd == 'disconnect':
             self.disconnect()
         elif cmd == 'die':
-            self.die()
+            if to == 'shazaum':
+                self.die()
+            else:
+                conn.privmsg(to, 'Nah! vou ficar por aqui mesmo')
         elif cmd == '!help':
             conn.privmsg(to, 'Ainda não tenho um help ou ajuda para mostrar, mas tente usar {}: !fortune'.format(nick))
             conn.privmsg(to, 'Ajuda ae com novas funções: https://github.com/OpenBSD-BR/bagre')
